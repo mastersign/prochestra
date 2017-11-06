@@ -29,13 +29,13 @@ A definition for three process calls with one dependency relationship could look
 The processes are called in the given order. The jobs ``j1`` and ``j2`` are executed no matter what.
 But, job ``j3`` is executed only, if the job ``j1`` returned with exit code 0.
 
-To run the job list, saved as ``jobs.json``, put ``orchestra``, or ``orchestra.cmd``, respectively, on the ``PATH`` and run::
+To run the job list, saved as ``jobs.json``, put ``prochestra``, or ``prochestra.cmd``, respectively, on the ``PATH`` and run::
 
-    orchestra jobs.json
+    prochestra jobs.json
 
 To find out all possible command line arguments for *Prochestra*, print the help text like this::
 
-    orchestra --help
+    prochestra --help
 
 License
 -------
