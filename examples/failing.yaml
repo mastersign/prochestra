@@ -1,0 +1,12 @@
+jobs:
+- id: jobA
+  cmd: python
+  args: ["-c", "print('Job A with Error'); exit(1)"]
+- id: jobB
+  cmd: python
+  args: ["-c", "print('Job B')"]
+- id: jobC
+  cmd: python
+  args: ["-c", "print('Job C')"]
+  dependencies:
+  - jobA

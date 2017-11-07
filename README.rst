@@ -11,27 +11,30 @@ The return code of *Procestra* is 0, if every subprocess call returned 0; otherw
 
 The output of all processes is written to the ``stdout``, one single logfile, or dismissed.
 
-The process calls and its dependencies are defined in a simple JSON file.
+The process calls and its dependencies are defined in a JSON or YAML file.
 
 Usage
 -----
 
 A definition for three process calls with one dependency relationship could look like this::
 
-    {
-        "jobs": [
-            { "id": "j1", "cmd": "batchjob1", "args": ["-c" "/usr/local/etc/someconfig"] },
-            { "id": "j2", "cmd": "batchjob2" },
-            { "id": "j3", "cmd": "batchjob3", dependencies: ["j1"] }
-        ]
-    }
+    jobs:
+    - id: j1
+      cmd: "batchjob1"
+      args: ["-c" "/usr/local/etc/someconfig"]
+    - id: j2
+      cmd: "batchjob2"
+    - id: j3
+      cmd: "batchjob3"
+      dependencies:
+      - j1
 
 The processes are called in the given order. The jobs ``j1`` and ``j2`` are executed no matter what.
 But, job ``j3`` is executed only, if the job ``j1`` returned with exit code 0.
 
-To run the job list, saved as ``jobs.json``, put ``prochestra``, or ``prochestra.cmd``, respectively, on the ``PATH`` and run::
+To run the job list, saved as ``jobs.yaml``, put ``prochestra``, or ``prochestra.cmd``, respectively, on the ``PATH`` and run::
 
-    prochestra jobs.json
+    prochestra jobs.yaml
 
 To find out all possible command line arguments for *Prochestra*, print the help text like this::
 
