@@ -5,7 +5,7 @@ import argparse
 import json
 import yaml
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 
 class Prochestra(object):
