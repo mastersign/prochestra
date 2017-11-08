@@ -98,7 +98,7 @@ class JobListFile(argparse.Action):
 def command_line(argv=None):
     parser = argparse.ArgumentParser(prog='prochestra')
     parser.add_argument('jobfile', action=JobListFile,
-                        help="A path to a JSON file with the job list.")
+                        help="A path to a JSON or YAML file with the job list.")
     parser.add_argument('--log', '-l', type=argparse.FileType('a', encoding='UTF-8'),
                         help="A path to a log file to write the output to.")
     parser.add_argument('--silent', '-s', action='store_true',
