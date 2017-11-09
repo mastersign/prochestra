@@ -3,6 +3,7 @@ import datetime
 import os
 import argparse
 import json
+import shlex
 import yaml
 
 __version__ = "1.1.1"
@@ -30,7 +31,9 @@ class Prochestra(object):
                 self.info("{} SKIPPED", job.id)
                 continue
             self.info("{} STARTED", job.id)
-            p = subprocess.run([job.cmd] + job.args, shell=True,
+            # combine the cmd and the args into one string, because of shell=True
+            argv = [' '.join([job.cmd] + [shlex.quote(arg) for arg in job.args])]
+            p = subprocess.run(argv, shell=True,
                                stderr=subprocess.DEVNULL if self.silent else self.log_file,
                                stdout=subprocess.DEVNULL if self.silent else self.log_file)
             self.state[job.id] = p.returncode == 0
